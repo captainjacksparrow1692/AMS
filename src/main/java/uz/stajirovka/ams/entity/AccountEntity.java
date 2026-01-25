@@ -1,0 +1,59 @@
+package uz.stajirovka.ams.entity;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.FieldDefaults;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+import uz.stajirovka.ams.constant.enums.AccountCurrency;
+import uz.stajirovka.ams.constant.enums.AccountStatus;
+
+import java.time.LocalDateTime;
+
+@Entity
+@Table(name = "accounts")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@FieldDefaults(level = AccessLevel.PRIVATE)
+public class AccountEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long id;
+
+    Long userId;
+
+    @Column(nullable = false, unique = true)
+    Long accountNumber;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    AccountCurrency accountCurrency;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    AccountStatus accountStatus;
+
+    @Column(nullable = false)
+    Long balance;
+
+    @CreationTimestamp
+    LocalDateTime createdAt;
+
+    @UpdateTimestamp
+    LocalDateTime updatedAt;
+}
