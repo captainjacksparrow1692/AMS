@@ -17,10 +17,12 @@ import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import uz.stajirovka.ams.constant.Constant;
 import uz.stajirovka.ams.constant.enums.AccountCurrency;
 import uz.stajirovka.ams.constant.enums.AccountStatus;
 import uz.stajirovka.ams.constant.enums.AccountType;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
@@ -38,8 +40,8 @@ public class AccountEntity {
 
     Long userId;
 
-    @Column(nullable = false, unique = true)
-    Long accountNumber;
+    @Column(nullable = false, unique = true, length = 20)
+    String accountNumber;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
@@ -53,8 +55,9 @@ public class AccountEntity {
     @Column(nullable = false)
     AccountType accountType;
 
+    @Builder.Default
     @Column(nullable = false)
-    Long balance;
+    BigDecimal balance = Constant.INITIAL_BALANCE;
 
     @CreationTimestamp
     LocalDateTime createdAt;
