@@ -33,7 +33,7 @@ public class AccountServiceImpl implements AccountService {
         AccountEntity entity = accountMapper.toEntity(requestDto);
         entity.setAccountStatus(AccountStatus.ACTIVE);
         entity.setAccountNumber(ThreadLocalRandom.current().nextLong(ACCOUNT_NUMBER_MIN, ACCOUNT_NUMBER_MAX));
-        if (entity.getBalance() == null) entity.setBalance(0L);
+        entity.setBalance(0L);
         return accountMapper.toCreateResponse(accountRepository.save(entity));
     }
 
@@ -52,7 +52,7 @@ public class AccountServiceImpl implements AccountService {
     public AccountInfoResponseDto blockAccount(Long accountNumber) {
         AccountEntity entity = getAccount(accountNumber);
         entity.setAccountStatus(AccountStatus.FREEZED);
-        return accountMapper.toAccountInfoResponse(accountRepository.save(entity));
+        return accountMapper.toAccountInfoResponse(entity);
     }
 
     @Override
@@ -60,7 +60,7 @@ public class AccountServiceImpl implements AccountService {
     public AccountInfoResponseDto closeAccount(Long accountNumber) {
         AccountEntity entity = getAccount(accountNumber);
         entity.setAccountStatus(AccountStatus.INACTIVE);
-        return accountMapper.toAccountInfoResponse(accountRepository.save(entity));
+        return accountMapper.toAccountInfoResponse(entity);
     }
 
     private AccountEntity getAccount(Long accountNumber) {
