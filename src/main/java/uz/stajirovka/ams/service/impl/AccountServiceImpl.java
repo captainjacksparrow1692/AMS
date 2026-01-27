@@ -31,7 +31,6 @@ public class AccountServiceImpl implements AccountService {
     public AccountCreateResponseDto createAccount(AccountCreateRequestDto requestDto) {
         AccountEntity entity = accountMapper.toEntity(requestDto);
         entity.setAccountStatus(AccountStatus.ACTIVE);
-        entity.setAccountNumber(ThreadLocalRandom.current().nextLong(ACCOUNT_NUMBER_MIN, ACCOUNT_NUMBER_MAX));
         entity.setBalance(0L);
         return accountMapper.toCreateResponse(accountRepository.save(entity));
     }
