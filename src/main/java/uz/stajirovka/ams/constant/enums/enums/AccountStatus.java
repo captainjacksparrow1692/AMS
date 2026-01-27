@@ -1,4 +1,4 @@
-package uz.stajirovka.ams.constant.enums;
+package uz.stajirovka.ams.constant.enums.enums;
 
 public enum AccountStatus {
     ACTIVE,
