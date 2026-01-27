@@ -8,6 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Pattern;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -40,6 +41,7 @@ public class AccountEntity {
 
     Long userId;
 
+    @Pattern(regexp = Constant.ACCOUNT_NUMBER_REGEX)
     @Column(nullable = false, unique = true, length = 20)
     String accountNumber;
 
