@@ -14,6 +14,8 @@ import uz.stajirovka.ams.mapper.AccountMapper;
 import uz.stajirovka.ams.repository.AccountRepository;
 import uz.stajirovka.ams.service.AccountService;
 
+import java.math.BigDecimal;
+
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
@@ -27,7 +29,7 @@ public class AccountServiceImpl implements AccountService {
     public AccountCreateResponseDto createAccount(AccountCreateRequestDto requestDto) {
         AccountEntity entity = accountMapper.toEntity(requestDto);
         entity.setAccountStatus(AccountStatus.ACTIVE);
-        entity.setBalance(0L);
+        entity.setBalance(BigDecimal.ZERO);
         return accountMapper.toCreateResponse(accountRepository.save(entity));
     }
 
