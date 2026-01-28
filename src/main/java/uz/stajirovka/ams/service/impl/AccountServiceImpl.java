@@ -15,6 +15,7 @@ import uz.stajirovka.ams.repository.AccountRepository;
 import uz.stajirovka.ams.service.AccountService;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -57,6 +58,13 @@ public class AccountServiceImpl implements AccountService {
         AccountEntity entity = getAccount(accountNumber);
         entity.setAccountStatus(AccountStatus.INACTIVE);
         return accountMapper.toAccountInfoResponse(entity);
+    }
+
+    @Override
+    public AccountInfoResponseDto getAccountById(UUID id) {
+        return accountRepository.findById(id)
+                .map(accountMapper::toAccountInfoResponse)
+                .orElseThrow(()-> new AccountNotFoundException("Account not found with ID: " + id));
     }
 
     private AccountEntity getAccount(String accountNumber) {
