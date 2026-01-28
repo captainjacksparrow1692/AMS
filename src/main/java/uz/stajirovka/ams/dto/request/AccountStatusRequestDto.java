@@ -5,10 +5,9 @@ import jakarta.validation.constraints.NotNull;
 import uz.stajirovka.ams.constant.enums.AccountStatus;
 
 public record AccountStatusRequestDto(
-        @NotNull
+        @NotNull(message = "Status is required")
         AccountStatus accountStatus,
 
-        @NotBlank
-        String reason // причина изменения статуса
-){
-}
+        @NotBlank(message = "Reason for status change must not be empty")
+        String reason
+) {}
