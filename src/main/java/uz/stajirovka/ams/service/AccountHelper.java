@@ -1,6 +1,7 @@
-package uz.stajirovka.ams.constant;
+package uz.stajirovka.ams.service;
 
 import org.springframework.stereotype.Component;
+import uz.stajirovka.ams.constant.Constant;
 import uz.stajirovka.ams.constant.enums.AccountCurrency;
 import uz.stajirovka.ams.constant.enums.AccountType;
 
