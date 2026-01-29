@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import uz.stajirovka.ams.dto.ErrorDto;
-import uz.stajirovka.ams.exception.BaseException;
+import uz.stajirovka.ams.exception.BussinesException;
 
 import java.time.LocalDateTime;
 import java.util.stream.Collectors;
@@ -15,8 +15,8 @@ import java.util.stream.Collectors;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(BaseException.class)
-    public ResponseEntity<ErrorDto> handleBaseException(BaseException ex, WebRequest request) {
+    @ExceptionHandler(BussinesException.class)
+    public ResponseEntity<ErrorDto> handleBaseException(BussinesException ex, WebRequest request) {
         ErrorDto errorDto = ErrorDto.builder()
             .message(ex.getMessage())
             .status(ex.getStatus().value())
