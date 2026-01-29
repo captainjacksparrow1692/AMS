@@ -59,10 +59,6 @@ public class AccountEntity {
     @Column(nullable = false)
     AccountType accountType;
 
-    @Builder.Default
-    @Column(nullable = false, precision = 19, scale = 2)
-    BigDecimal balance = Constant.INITIAL_BALANCE;
-
     @CreationTimestamp
     LocalDateTime createdAt;
 
