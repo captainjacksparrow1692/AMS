@@ -4,8 +4,8 @@ import lombok.Getter;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 import org.springframework.http.HttpStatus;
+import uz.stajirovka.ams.constant.enums.ErrorType;
 
-import javax.lang.model.type.ErrorType;
 
 @Getter
 @ToString
