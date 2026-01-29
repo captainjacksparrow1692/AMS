@@ -1,10 +1,8 @@
 package uz.stajirovka.ams.constant.enums;
 
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 
 @Getter
-@RequiredArgsConstructor
 public enum Error {
     // --- Общие системные ошибки (10xxx) ---
     INTERNAL_SERVICE_ERROR(10001, "Internal service error"),
@@ -30,9 +28,18 @@ public enum Error {
     // --- Бизнес-ошибки AMS: Транзакции (30xxx) ---
     TRANSACTION_NOT_FOUND(30001, "Transaction not found"),
     TRANSACTION_FAILED(30002, "Transaction processing failed"),
-    INVALID_AMOUNT(30003, "Invalid transaction amount");
+    INVALID_AMOUNT(30003, "Invalid transaction amount"),
 
-    private final int code;
-    private final String message;
+    // --- Ошибки внешних сервисов / HTTP (40xxx) ---
+    EXTERNAL_SERVICE_ERROR(40001, "Error occurred while calling external service");
+
+
+    final int code;
+    final String message;
+
+    Error(int code, String message) {
+        this.code = code;
+        this.message = message;
+    }
 
 }
